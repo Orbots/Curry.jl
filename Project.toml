@@ -1,0 +1,10 @@
+name = "Curry"
+uuid = "e4be5ba2-6463-56d8-8409-50d2cdcb556e"
+authors = ["Michael Alexander Ewert <mewert99@yahoo.com>"]
+version = "0.1.0"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
