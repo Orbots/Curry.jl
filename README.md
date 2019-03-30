@@ -9,14 +9,15 @@ If multiple arities of a function exist, the one with the least number of argume
 e.g. arities 1 and greater than 2 exist for -, but arity 2 will be choosen for currying.
 
 Exports the following functions:
-* `curry`,
-* `partial`,
-* `swap`.
+* `curry`
+* `partial`
+* `swap`
 
 Implements the following puns:
 * `🍛` (exported)
 * `∂`
 
+Examples:
 
     julia> curry(map)(sqrt)(1:4)
     4-element Array{Float64,1}:
@@ -30,4 +31,3 @@ Implements the following puns:
     
     julia> curry((-))(9)(1)
     8
-
