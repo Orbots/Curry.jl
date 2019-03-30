@@ -26,13 +26,15 @@ partial = (f::Function, y...)->(z...)->f(y..., z...)
 
 ∂(f::Function, y...) = partial(f, y...)
 
-function curryn(f, n)
+function curryn(f, n, args)
   if n == 1
-    f
-  else 
-    x->curry(f, n-1)(x)
+    x->f(args...,x)
+  else
+    x->curryn(f, n-1, vcat(args,x))
   end
 end
+
+curryn(f, n) = curryn(f,n,[])
 
 function curry2(f)
   x->y->f(x, y)
@@ -86,7 +88,7 @@ julia> curry((-))(9)(1)
     elseif n == 4
       :(curry4(f))
     else
-      :(curryn(f, n))
+      :(curryn(f, $n))
     end
   else
     :(f)
