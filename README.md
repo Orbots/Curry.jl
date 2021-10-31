@@ -31,3 +31,6 @@ Examples:
     
     julia> curry((-))(9)(1)
     8
+
+    julia> curry(reduce; init=10)(+)(1:5)
+    25
