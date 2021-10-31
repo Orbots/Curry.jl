@@ -11,3 +11,5 @@ using Test
 foo5(a,b,c,d,r) = ((a+b*c)/d)^r
 
 @test curry(foo5)(1)(2)(3)(4)(5) ≈ foo5(1,2,3,4,5)
+
+@test curry(mapreduce ;init = 12)(x->x^2)(+)([1,2,3,4])  == 42

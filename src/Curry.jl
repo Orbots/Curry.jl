@@ -36,6 +36,16 @@ end
 
 curryn(f, n) = curryn(f,n,[])
 
+function curryn(f, n, args; kwargs...)
+  if n == 1
+    x->f(args..., x; kwargs...)
+  else
+    x->curryn(f, n-1, vcat(args, x); kwargs...)
+  end
+end
+
+curryn(f, n; kwargs...) = curryn(f,n,[]; kwargs...)
+
 function curry2(f)
   x->y->f(x, y)
 end
@@ -95,6 +105,15 @@ julia> curry((-))(9)(1)
   end
 end
 
+@generated function curry(f; kwargs...)
+  m = methodswith(f)
+  minargs = mapreduce(x->x.nargs, min, m)-1
+  maxargs = mapreduce(x->x.nargs, max, m)-1
+  n = max(2, minargs)
+  :(curryn(f, $n; kwargs...))
+end
+
 🍛(f) = curry(f)
+🍛(f; kwargs...) = curry(f; kwargs...)
 
 end
