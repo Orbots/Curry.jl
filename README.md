@@ -19,6 +19,10 @@ Implements the following puns:
 
 Examples:
 
+    # convert from 0-based array to 1-based.  I use this all the time.
+    julia> 🍛(+)(1).([0,1,2,3]) |> show
+    [1, 2, 3, 4]
+
     julia> curry(map)(sqrt)(1:4)
     4-element Array{Float64,1}:
      1.0
